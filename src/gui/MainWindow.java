@@ -5,6 +5,8 @@
  */
 package gui;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author root
@@ -64,8 +66,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         toCurrency2.setText("->");
+        toCurrency2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toCurrency2ActionPerformed(evt);
+            }
+        });
 
         toCurrency1.setText("<-");
+        toCurrency1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toCurrency1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,6 +141,22 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_exchangeRateFocusGained
 
+    private void toCurrency2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toCurrency2ActionPerformed
+        try {
+            this.currency2.setText(checkInput(this.currency1));
+        } catch (NumberFormatException e) {
+            System.out.println("Esto no es un número float");
+        }
+    }//GEN-LAST:event_toCurrency2ActionPerformed
+
+    private void toCurrency1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toCurrency1ActionPerformed
+        try {
+            this.currency1.setText(checkInput(this.currency2));
+        } catch (NumberFormatException e) {
+            System.out.println("Esto no es un número float");
+        }
+    }//GEN-LAST:event_toCurrency1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,4 +201,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton toCurrency1;
     private javax.swing.JButton toCurrency2;
     // End of variables declaration//GEN-END:variables
+    
+    private String checkInput(javax.swing.JTextField textField) {
+        Float rate = Float.parseFloat(this.exchangeRate.getText());
+            Float currency = Float.parseFloat(textField.getText());
+            DecimalFormat df = new DecimalFormat("#.00");
+            Float result = Float.parseFloat(df.format(rate.floatValue())) 
+                    * Float.parseFloat(df.format(currency.floatValue()));
+        return result.toString();
+    }
 }
