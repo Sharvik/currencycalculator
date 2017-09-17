@@ -93,11 +93,11 @@ public class MainWindow extends javax.swing.JFrame {
         currency2.setBorder(null);
         currency2.setForeground(Color.GRAY);
         currency2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                currency2FocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 currency2FocusLost(evt);
+            }
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                currency2FocusGained(evt);
             }
         });
         currency2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -108,7 +108,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         developers.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
         developers.setForeground(new java.awt.Color(226, 226, 226));
-        developers.setText("Geraldo Rodrígues & David Medina 2017");
+        developers.setText("David Medina & Geraldo Rodrígues 2017");
 
         toCurrency2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/forward.png"))); // NOI18N
         toCurrency2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -139,29 +139,32 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toCurrency2)
-                    .addComponent(toCurrency1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator1)
-                    .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(currency2)
-                    .addComponent(jSeparator3))
-                .addGap(49, 49, 49))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(developers)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(developers))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(toCurrency2)
+                                    .addComponent(toCurrency1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(51, 51, 51)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(exchangeRate)
+                                    .addComponent(jSeparator2))
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(currency2)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 39, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -329,7 +332,6 @@ public class MainWindow extends javax.swing.JFrame {
         JFrame frame = new JFrame();
         
         if(textField.getText().contains(".")) {
-            System.out.println("Hay un punto decimal");
             String[] number = textField.getText().split("\\.");
             
             for (String set : number) {
@@ -343,11 +345,14 @@ public class MainWindow extends javax.swing.JFrame {
                     return false;
                 }
             }
+            
+            if(number.length == 2) {
+                if(number[1].length() > 2) number[1] = number[1].substring(0, 2);
+                textField.setText(number[0] + "." + number[1]);
+            }
                 
             
         } else {
-            System.out.println("No hay punto decimal");
-            
             if(textField.getText().matches(".*[a-zA-Z]+.*")) {
                 JOptionPane.showMessageDialog(frame,
                                             "You introduced a wrong number",
