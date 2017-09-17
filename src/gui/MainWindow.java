@@ -5,6 +5,7 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.text.DecimalFormat;
 
 /**
@@ -13,13 +14,10 @@ import java.text.DecimalFormat;
  */
 public class MainWindow extends javax.swing.JFrame {
     
-    private boolean init;
-    
     /**
      * Creates new form window
      */
     public MainWindow() {
-        init = false;
         initComponents();
     }
 
@@ -32,130 +30,247 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        developers = new javax.swing.JLabel();
-        exchangeRate = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         currency1 = new javax.swing.JTextField();
+        exchangeRate = new javax.swing.JTextField();
         currency2 = new javax.swing.JTextField();
-        toCurrency2 = new javax.swing.JButton();
-        toCurrency1 = new javax.swing.JButton();
+        developers = new javax.swing.JLabel();
+        toCurrency2 = new javax.swing.JLabel();
+        toCurrency1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Currency Calculator");
+        setBackground(new java.awt.Color(12, 2, 86));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        developers.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
-        developers.setText("Geraldo Rodrígues & David Medina 2017");
+        jPanel1.setBackground(new java.awt.Color(38, 46, 43));
 
-        exchangeRate.setText("Índice");
-        exchangeRate.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                exchangeRateFocusGained(evt);
-            }
-        });
-
-        currency1.setText("Divisa origen");
+        currency1.setBackground(new java.awt.Color(38, 46, 43));
+        currency1.setFont(new java.awt.Font("cmr10", 1, 18)); // NOI18N
+        currency1.setText("Currency 1");
+        currency1.setBorder(null);
+        currency1.setForeground(Color.GRAY);
         currency1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 currency1FocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                currency1FocusLost(evt);
+            }
+        });
+        currency1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                currency1KeyPressed(evt);
+            }
         });
 
-        currency2.setText("Divisa destino");
+        exchangeRate.setBackground(new java.awt.Color(38, 46, 43));
+        exchangeRate.setFont(new java.awt.Font("cmr10", 1, 18)); // NOI18N
+        exchangeRate.setText("Rate");
+        exchangeRate.setBorder(null);
+        exchangeRate.setForeground(Color.GRAY);
+        exchangeRate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                exchangeRateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                exchangeRateFocusLost(evt);
+            }
+        });
+        exchangeRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exchangeRateKeyPressed(evt);
+            }
+        });
+
+        currency2.setBackground(new java.awt.Color(38, 46, 43));
+        currency2.setFont(new java.awt.Font("cmr10", 1, 18)); // NOI18N
+        currency2.setText("Currency 2");
+        currency2.setBorder(null);
+        currency2.setForeground(Color.GRAY);
         currency2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 currency2FocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                currency2FocusLost(evt);
+            }
         });
-
-        toCurrency2.setText("->");
-        toCurrency2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toCurrency2ActionPerformed(evt);
+        currency2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                currency2KeyPressed(evt);
             }
         });
 
-        toCurrency1.setText("<-");
-        toCurrency1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toCurrency1ActionPerformed(evt);
+        developers.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
+        developers.setForeground(new java.awt.Color(226, 226, 226));
+        developers.setText("Geraldo Rodrígues & David Medina 2017");
+
+        toCurrency2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/forward.png"))); // NOI18N
+        toCurrency2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        toCurrency2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toCurrency2MouseClicked(evt);
             }
         });
+
+        toCurrency1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/back.png"))); // NOI18N
+        toCurrency1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        toCurrency1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toCurrency1MouseClicked(evt);
+            }
+        });
+
+        jSeparator1.setBackground(new java.awt.Color(254, 254, 254));
+        jSeparator1.setForeground(new java.awt.Color(254, 254, 254));
+
+        jSeparator2.setBackground(new java.awt.Color(254, 254, 254));
+        jSeparator2.setForeground(new java.awt.Color(254, 254, 254));
+
+        jSeparator3.setBackground(new java.awt.Color(254, 254, 254));
+        jSeparator3.setForeground(new java.awt.Color(254, 254, 254));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(toCurrency2)
+                    .addComponent(toCurrency1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(developers))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator1)
+                            .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(currency2)
+                            .addComponent(jSeparator3))
+                        .addGap(26, 26, 26)))
+                .addGap(23, 23, 23))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(toCurrency2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(currency2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator3)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(toCurrency1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(developers, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(toCurrency2)
-                            .addComponent(toCurrency1))
-                        .addGap(44, 44, 44)
-                        .addComponent(currency2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(developers)
-                        .addContainerGap())))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(toCurrency2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(toCurrency1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(currency2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)))
-                .addComponent(developers)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void currency2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_currency2FocusGained
-        currency2.setText("");
+        currency2.setCaretPosition(0);
     }//GEN-LAST:event_currency2FocusGained
 
     private void currency1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_currency1FocusGained
-        currency1.setText("");
+        currency1.setCaretPosition(0);
     }//GEN-LAST:event_currency1FocusGained
 
     private void exchangeRateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_exchangeRateFocusGained
-        if(init == false) 
-            init = true;
-        else
-            exchangeRate.setText("");
-
+        exchangeRate.setCaretPosition(0);
     }//GEN-LAST:event_exchangeRateFocusGained
 
-    private void toCurrency2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toCurrency2ActionPerformed
-        try {
-            this.currency2.setText(checkInput(this.currency1));
-        } catch (NumberFormatException e) {
-            System.out.println("Esto no es un número float");
+    private void exchangeRateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_exchangeRateFocusLost
+        if(exchangeRate.getText().isEmpty()) {
+            exchangeRate.setText("Rate");
+            exchangeRate.setForeground(Color.GRAY);
         }
-    }//GEN-LAST:event_toCurrency2ActionPerformed
+    }//GEN-LAST:event_exchangeRateFocusLost
 
-    private void toCurrency1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toCurrency1ActionPerformed
-        try {
-            this.currency1.setText(checkInput(this.currency2));
-        } catch (NumberFormatException e) {
-            System.out.println("Esto no es un número float");
+    private void currency1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_currency1FocusLost
+        if(currency1.getText().isEmpty()) {
+            currency1.setText("Currency 1");
+            currency1.setForeground(Color.GRAY);
         }
-    }//GEN-LAST:event_toCurrency1ActionPerformed
+    }//GEN-LAST:event_currency1FocusLost
+
+    private void currency2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_currency2FocusLost
+        if(currency2.getText().isEmpty()) {
+            currency2.setText("Currency 2");
+            currency2.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_currency2FocusLost
+
+    private void exchangeRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_exchangeRateKeyPressed
+        if(exchangeRate.getText().equals("Rate")){
+            exchangeRate.setText("");
+            exchangeRate.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_exchangeRateKeyPressed
+
+    private void currency1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_currency1KeyPressed
+        if(currency1.getText().equals("Currency 1")){
+            currency1.setText("");
+            currency1.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_currency1KeyPressed
+
+    private void currency2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_currency2KeyPressed
+        if(currency2.getText().equals("Currency 2")){
+            currency2.setText("");
+            currency2.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_currency2KeyPressed
+
+    private void toCurrency2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toCurrency2MouseClicked
+        try {
+            currency2.setText(checkInput(currency1));
+        } catch(NumberFormatException e) {
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_toCurrency2MouseClicked
+
+    private void toCurrency1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toCurrency1MouseClicked
+        try {
+            currency1.setText(checkInput(currency2));
+        } catch(NumberFormatException e) {
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_toCurrency1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,8 +313,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField currency2;
     private javax.swing.JLabel developers;
     private javax.swing.JTextField exchangeRate;
-    private javax.swing.JButton toCurrency1;
-    private javax.swing.JButton toCurrency2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel toCurrency1;
+    private javax.swing.JLabel toCurrency2;
     // End of variables declaration//GEN-END:variables
     
     private String checkInput(javax.swing.JTextField textField) {
