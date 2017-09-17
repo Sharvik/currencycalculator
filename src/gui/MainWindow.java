@@ -6,7 +6,8 @@
 package gui;
 
 import java.awt.Color;
-import java.text.DecimalFormat;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,25 +146,23 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(toCurrency1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(developers))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1)
-                            .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(currency2)
-                            .addComponent(jSeparator3))
-                        .addGap(26, 26, 26)))
-                .addGap(23, 23, 23))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator1)
+                    .addComponent(currency1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exchangeRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(currency2)
+                    .addComponent(jSeparator3))
+                .addGap(49, 49, 49))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(developers)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,21 +235,24 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_currency2FocusLost
 
     private void exchangeRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_exchangeRateKeyPressed
-        if(exchangeRate.getText().equals("Rate")){
+        if(exchangeRate.getText().equals("Rate") || 
+                                    exchangeRate.getForeground() == Color.GRAY){
             exchangeRate.setText("");
             exchangeRate.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_exchangeRateKeyPressed
 
     private void currency1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_currency1KeyPressed
-        if(currency1.getText().equals("Currency 1")){
+        if(currency1.getText().equals("Currency 1") || 
+                                    currency1.getForeground() == Color.GRAY){
             currency1.setText("");
             currency1.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_currency1KeyPressed
 
     private void currency2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_currency2KeyPressed
-        if(currency2.getText().equals("Currency 2")){
+        if(currency2.getText().equals("Currency 2") || 
+                                    currency2.getForeground() == Color.GRAY){
             currency2.setText("");
             currency2.setForeground(Color.WHITE);
         }
@@ -258,7 +260,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void toCurrency2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toCurrency2MouseClicked
         try {
-            currency2.setText(checkInput(currency1));
+            currency2.setText(calculateExchange(currency1));
+            currency2.setForeground(Color.GRAY);
         } catch(NumberFormatException e) {
             System.out.println("Error");
         }
@@ -266,7 +269,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void toCurrency1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toCurrency1MouseClicked
         try {
-            currency1.setText(checkInput(currency2));
+            currency1.setText(calculateExchange(currency2));
+            currency1.setForeground(Color.GRAY);
         } catch(NumberFormatException e) {
             System.out.println("Error");
         }
@@ -321,12 +325,50 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel toCurrency2;
     // End of variables declaration//GEN-END:variables
     
-    private String checkInput(javax.swing.JTextField textField) {
-        Float rate = Float.parseFloat(this.exchangeRate.getText());
-            Float currency = Float.parseFloat(textField.getText());
-            DecimalFormat df = new DecimalFormat("#.00");
-            Float result = Float.parseFloat(df.format(rate.floatValue())) 
-                    * Float.parseFloat(df.format(currency.floatValue()));
-        return result.toString();
+    private boolean checkInput(javax.swing.JTextField textField) {
+        JFrame frame = new JFrame();
+        
+        if(textField.getText().contains(".")) {
+            System.out.println("Hay un punto decimal");
+            String[] number = textField.getText().split("\\.");
+            
+            for (String set : number) {
+                if(set.matches(".*[a-zA-Z]+.*")) {
+                    JOptionPane.showMessageDialog(frame,
+                                            "You introduced a wrong number",
+                                            "ERROR",
+                                            JOptionPane.WARNING_MESSAGE);
+                    textField.setText("");
+                    
+                    return false;
+                }
+            }
+                
+            
+        } else {
+            System.out.println("No hay punto decimal");
+            
+            if(textField.getText().matches(".*[a-zA-Z]+.*")) {
+                JOptionPane.showMessageDialog(frame,
+                                            "You introduced a wrong number",
+                                            "ERROR",
+                                            JOptionPane.WARNING_MESSAGE);
+                textField.setText("");
+                
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    private String calculateExchange(javax.swing.JTextField textField) {
+        if(this.checkInput(exchangeRate) && this.checkInput(textField)) {
+            float rate = Float.parseFloat(exchangeRate.getText());
+            float input = Float.parseFloat(textField.getText());
+            return Float.toString(rate*input);
+        }
+        
+        return "ERROR";
     }
 }
