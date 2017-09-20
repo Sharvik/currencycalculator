@@ -6,8 +6,11 @@
 package gui;
 
 import java.awt.Color;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  *
@@ -335,7 +338,7 @@ public class MainWindow extends javax.swing.JFrame {
             String[] number = textField.getText().split("\\.");
             
             for (String set : number) {
-                if(set.matches(".*[a-zA-Z]+.*")) {
+                if(set.matches(".*[^0-9]+.*")) {
                     JOptionPane.showMessageDialog(frame,
                                             "You introduced a wrong number",
                                             "ERROR",
@@ -353,7 +356,7 @@ public class MainWindow extends javax.swing.JFrame {
                 
             
         } else {
-            if(textField.getText().matches(".*[a-zA-Z]+.*")) {
+            if(textField.getText().matches(".*[^0-9]+.*")) {
                 JOptionPane.showMessageDialog(frame,
                                             "You introduced a wrong number",
                                             "ERROR",
@@ -371,7 +374,10 @@ public class MainWindow extends javax.swing.JFrame {
         if(this.checkInput(exchangeRate) && this.checkInput(textField)) {
             float rate = Float.parseFloat(exchangeRate.getText());
             float input = Float.parseFloat(textField.getText());
-            return Float.toString(rate*input);
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.setRoundingMode(RoundingMode.CEILING);
+            float result = Float.parseFloat(df.format(rate*input));
+            return Float.toString(result);
         }
         
         return "ERROR";
