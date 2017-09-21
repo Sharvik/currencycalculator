@@ -10,7 +10,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  *
@@ -111,7 +110,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         developers.setFont(new java.awt.Font("Cantarell", 1, 10)); // NOI18N
         developers.setForeground(new java.awt.Color(226, 226, 226));
-        developers.setText("David Medina & Geraldo Rodrígues 2017");
+        developers.setText("David Medina & Geraldo Rodrigues 2017");
 
         toCurrency2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/forward.png"))); // NOI18N
         toCurrency2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
